@@ -11,7 +11,7 @@ const Header = () => {
 const Field = () => {
   const holder = 'Enter here';
   const styleField = {
-    width: '300px'
+    width: '310px'
   }
 
   return <input
