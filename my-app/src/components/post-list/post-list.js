@@ -5,7 +5,7 @@ import PostListItem from '../post-list-item';
 import './post-list.css'
 
 
-const PostList = ({posts, onDelete}) => {               //15-20 откуда скобки?
+const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {               //15-20 откуда скобки?
 
     const elements = posts.map(item => {
         return (
@@ -13,7 +13,10 @@ const PostList = ({posts, onDelete}) => {               //15-20 откуда с�
                 <PostListItem 
                 label={item.label} 
                 important={item.important}
-                onDelete={ () => onDelete(item.id) } />
+                like={item.like}
+                onDelete={ () => onDelete(item.id) }
+                onToggleImportant={ () => onToggleImportant(item.id)}
+                onToggleLiked={ () => onToggleLiked(item.id)} />
             </li>
         )
     });
