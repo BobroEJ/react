@@ -18,14 +18,14 @@ class App extends Component {
                 {label: 'I need a break...', important: false, like: false, id: 3}
             ],
             term: '',
-            filter: ''
+            filter: 'all'
         }
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this);
         this.onToggleLiked = this.onToggleLiked.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);           
-        this.onFilter = this.onFilter.bind(this);           
+        this.onFilterSelect = this.onFilterSelect.bind(this);           
 
         this.maxId = 4;
     }
@@ -107,7 +107,7 @@ class App extends Component {
         this.setState({term})
     }
 
-    onFilter(filter) {
+    onFilterSelect(filter) {
         this.setState({filter})
     }
 
@@ -128,7 +128,8 @@ class App extends Component {
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}/>
                     <PostStatusFilter
-                        onFilter={this.onFilter}/>
+                        filter={filter}
+                        onFilterSelect={this.onFilterSelect}/>
                 </div>
                 <PostList 
                     posts={visiblePosts}

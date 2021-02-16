@@ -5,36 +5,27 @@ import './post-status-filter.css'
 class PostStatusFilter extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            filter: 'all'
-        }
-        this.onFilterAll = this.onFilterAll.bind(this);
-        this.onFilterLiked = this.onFilterLiked.bind(this);
-    }
-
-    onFilterAll(filter) {
-        this.setState({
-            filter: ''
-        })
-        this.props.onFilter('')
-    }
-
-    onFilterLiked(filter) {
-        this.setState({
-            filter: 'liked'
-        })
-        this.props.onFilter('like')
+        this.buttons = [
+            {name: 'all', label: 'Все'},
+            {name: 'like', label: 'Понравилось'}
+        ]
     }
 
     render() {
+        const buttons = this.buttons.map(({name, label}) => {
+            const active = this.props.filter === name;
+            const clazz = active ? 'btn-info' : 'btn-outline-secondary';
+            return (
+                <button 
+                    key={name} 
+                    className={`btn ${clazz}`}
+                    onClick={() => this.props.onFilterSelect(name)}>{label}</button>
+            )
+        })
+
         return (
             <div className='btn-group'>
-                <button 
-                    className='btn btn-info'
-                    onClick={this.onFilterAll}>Все</button>
-                <button 
-                    className='btn btn-outline-secondary'
-                    onClick={this.onFilterLiked}>Понравилось</button>
+                {buttons}
             </div>
         )
     }
